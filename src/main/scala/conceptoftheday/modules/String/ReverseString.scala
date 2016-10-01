@@ -1,4 +1,4 @@
-package conceptoftheday.modules
+package conceptoftheday.modules.String
 
 /**
   * Created by jhenrie on 9/27/16.
