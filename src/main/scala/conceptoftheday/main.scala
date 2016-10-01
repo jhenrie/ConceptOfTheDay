@@ -2,6 +2,7 @@ package conceptoftheday
 
 import conceptoftheday.modules.Pyramid
 import conceptoftheday.modules.String.{ReverseString, StringTabulation}
+import conceptoftheday.modules.numbers.DigitSum
 
 /**
   * Created by jhenrie on 9/27/16.
@@ -34,5 +35,10 @@ object Main {
     //Much cleaner.
     Pyramid.buildPyramid(9).fold(println(_), _.map(row => println(row)))
     Pyramid.buildPyramid(10).fold(println(_), _.map(row => println(row)))
+
+    val number1 = 1234
+    val number2 = 837267
+    println(s"Number: ${number1} - Sum: ${DigitSum.sum(number1)}")
+    println(s"Number: ${number2} - Sum: ${DigitSum.sum(number2)}")
   }
 }
