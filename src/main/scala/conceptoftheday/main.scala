@@ -3,6 +3,7 @@ package conceptoftheday
 import conceptoftheday.modules.Pyramid
 import conceptoftheday.modules.String.{ReverseString, StringTabulation}
 import conceptoftheday.modules.numbers.DigitSum
+import conceptoftheday.modules.uuencode.Uuencode
 
 /**
   * Created by jhenrie on 9/27/16.
@@ -40,5 +41,11 @@ object Main {
     val number2 = 837267
     println(s"Number: ${number1} - Sum: ${DigitSum.sum(number1)}")
     println(s"Number: ${number2} - Sum: ${DigitSum.sum(number2)}")
+
+    println(s"** Encode **\n${Uuencode.encode("Cat")}")
+    println("****************************************")
+    println(s"${Uuencode.encode("This is a test of the script. This is only a test. If this was real well it would still not matter.")}")
+
+
   }
 }
