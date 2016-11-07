@@ -42,10 +42,21 @@ object Main {
     println(s"Number: ${number1} - Sum: ${DigitSum.sum(number1)}")
     println(s"Number: ${number2} - Sum: ${DigitSum.sum(number2)}")
 
-    println(s"** Encode **\n${Uuencode.encode("Cat")}")
     println("****************************************")
-    println(s"${Uuencode.encode("This is a test of the script. This is only a test. If this was real well it would still not matter.")}")
-
-
+    val text = Some("This is a test of the script. This is only a test. If this was real well it would still not matter.")
+    val file = Some("test.joe")
+    val results = Uuencode.encode(text,file)
+    println(s"${results.getOrElse("**ERROR**")}")
+    println("******")
+    val text2 = Some("Cat")
+    val file2 = None
+    val results2 = Uuencode.encode(text2,file2)
+    println(s"${results2.getOrElse("**ERROR**")}")
+    println("******")
+    val text3 = None
+    val file3 = None
+    val results3 = Uuencode.encode(text3,file3)
+    println(s"${results3.getOrElse("**ERROR**")}")
+    println("******")
   }
 }

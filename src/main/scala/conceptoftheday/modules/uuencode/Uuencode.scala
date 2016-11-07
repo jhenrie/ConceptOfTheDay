@@ -1,15 +1,38 @@
 package conceptoftheday.modules.uuencode
 
+import java.io.{File, FileWriter}
+
+
 /**
   * Created by jhenrie on 10/18/16.
   */
 object Uuencode {
-  def encode(input: String): String = {
-    (List(header()) ::: body(input) ::: List(footer())).mkString
+  def encode(input: Option[String], file: Option[String]): Option[String] = {
+    input match {
+      case Some(text) => {
+        file match {
+          case Some(targetFile) => {
+            val encoding = (List(header(targetFile)) ::: body(text) ::: List(footer())).mkString
+            val fd = new File(targetFile)
+            fd.createNewFile()
+
+            val writer = new FileWriter(fd)
+
+            writer.write(encoding)
+            writer.flush()
+            writer.close()
+
+            Some(encoding)
+          }
+          case None => None
+        }
+      }
+      case None => None
+    }
   }
 
-  private def header(): String = {
-    "begin 644 example.txt\n"
+  private def header(file: String): String = {
+    s"begin 644 ${file}\n"
   }
 
   private def body(input: String): List[String] = {
