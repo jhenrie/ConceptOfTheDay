@@ -18,6 +18,16 @@ row 5 = 1 space then 5s
 row 6 = 6s
 
 Only works to 9!
+
+Example usage
+Pyramid.buildPyramid(6) match {
+  case Left(msg) => println(msg)
+  case Right(pyramid) => pyramid.map(row => println(row))
+}
+
+or
+
+Pyramid.buildPyramid(9).fold(println(_), _.map(row => println(row)))
 */
 
 /**
@@ -26,7 +36,7 @@ Only works to 9!
 object Pyramid {
   def buildPyramid(totalRows: Int): Either[String, List[String]] = {
     if( totalRows > 9 || totalRows < 1) Left("Row count can not be greater than 9 nor less than 1.")
-    else Right(List.tabulate(totalRows + 1)( row => buildRow(row, totalRows)))
+    else Right(List.tabulate(totalRows)( row => buildRow(row + 1, totalRows)))
   }
 
   private def buildRow(row: Int, rows: Int): String = {

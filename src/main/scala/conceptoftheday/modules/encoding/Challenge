@@ -135,7 +135,7 @@ Char  Dec  Oct  Hex | Char  Dec  Oct  Hex | Char  Dec  Oct  Hex | Char Dec  Oct 
 
 Example *****
 (C, a, t) -> (67, 97, 116)
-010000 11110 000101 110100
+010000 111100 000101 110100
   16     54      5     52   -> Decimal
    0      V      %      T
 

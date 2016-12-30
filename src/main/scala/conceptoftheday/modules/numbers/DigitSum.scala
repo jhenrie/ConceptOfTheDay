@@ -1,7 +1,8 @@
 package conceptoftheday.modules.numbers
 
 /**
-  * Created by jhenrie on 10/1/16.
+  * Recursive function to sum all the digits of a given
+  * number.
   */
 object DigitSum {
   def sum(num: Int): Int = {
