@@ -11,7 +11,7 @@ class UtoUCodex extends Codex{
 
   def decode(input: Seq[String]): Either[String, String] = {
     if(input.size > 0 && !input(0).equals("`")) {
-      Right(input.map(x => decodeLine(x)).mkString)
+      Right(input.map(x => decodeLine(x)).mkString.trim())
     } else {
       Left("Input provided had nothing to decode")
     }

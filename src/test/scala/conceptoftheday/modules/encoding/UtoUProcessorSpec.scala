@@ -62,4 +62,50 @@ class UtoUProcessorSpec extends FlatSpec {
       case Left(error) => fail()
     }
   }
+
+  it should "generate a file with encoded text then decode the text back to original message" in {
+    val path = "/Volumes/Expander1/code/IDE/ConceptOfTheDay/test.txt"
+    val text = "TEST"
+
+    val results = UtoUProcessor.write(text, "test.txt")
+    results match {
+      case Right(result) => {
+        assert(Files.exists(Paths.get(path)))
+        val result = UtoUProcessor.read(path)
+        assert(result.isRight)
+        result match {
+          case Right(message) => {
+            assert(message.equals(text))
+          }
+          case Left(error) => fail()
+        }
+
+        Files.delete(Paths.get(path))
+      }
+      case Left(error) => fail()
+    }
+  }
+
+  it should "generate a file with a long encoded text then decode the text back to original message" in {
+    val path = "/Volumes/Expander1/code/IDE/ConceptOfTheDay/test.txt"
+    val text = "This is a test of the script. This is only a test. If this was real well it would still not matter."
+
+    val results = UtoUProcessor.write(text, "test.txt")
+    results match {
+      case Right(result) => {
+        assert(Files.exists(Paths.get(path)))
+        val result = UtoUProcessor.read(path)
+        assert(result.isRight)
+        result match {
+          case Right(message) => {
+            assert(message.equals(text))
+          }
+          case Left(error) => fail()
+        }
+
+        Files.delete(Paths.get(path))
+      }
+      case Left(error) => fail()
+    }
+  }
 }

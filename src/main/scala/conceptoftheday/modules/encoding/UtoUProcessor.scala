@@ -2,6 +2,7 @@ package conceptoftheday.modules.encoding
 
 import java.io.{BufferedReader, File, FileReader, PrintWriter}
 
+import scala.io.Source
 import scala.util.{Failure, Success, Try}
 
 class UtoUProcessor(utoUCodex: UtoUCodex) extends CodexProcessor(utoUCodex) {
@@ -25,19 +26,11 @@ class UtoUProcessor(utoUCodex: UtoUCodex) extends CodexProcessor(utoUCodex) {
   }
 
   def read(filename: String):Either[String, String] = {
-    val fw = Try(new FileReader(filename))
-    val reader = fw.flatMap( file => Try(new BufferedReader(file)))
-    reader match {
-      case Success(reader) => {
-        val fileContents = List[String]()
-        for( line <- reader.readLine() ) yield fileContents :+ line
-        if (fileContents.isEmpty) {
-          Left("File was empty")
-        } else {
-          utoUCodex.decode(fileContents.slice(1, fileContents.size - 1))
-        }
-      }
-      case Failure(e) => { Left(e.getMessage) }
+    val fileContents = Source.fromFile(filename).getLines().toList
+    if (fileContents.isEmpty) {
+      Left("File was empty")
+    } else {
+      utoUCodex.decode(fileContents.slice(1, fileContents.size - 1))
     }
   }
 
@@ -54,5 +47,10 @@ object UtoUProcessor {
   def write(message: String, filename: String): Either[String, String] = {
     val writer = new UtoUProcessor(new UtoUCodex)
     writer.write(message, filename)
+  }
+
+  def read(filename: String): Either[String, String] = {
+    val reader = new UtoUProcessor(new UtoUCodex)
+    reader.read(filename)
   }
 }
