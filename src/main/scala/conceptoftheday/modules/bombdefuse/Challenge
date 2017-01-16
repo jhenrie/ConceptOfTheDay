@@ -47,3 +47,53 @@ Output 2
 Notes/Hints
 
 A state machine will help this make easy
+
+
+PERSONAL NOTES
+**********************************************
+
+* white, black, purple, red, green or orange
+
+WHITE State:
+  Can Cut:
+    * purple, red, green, orange
+  Can't Cut:
+    * white, black
+
+BLACK State:
+  Can Cut:
+    * purple, red, black
+  Can't Cut:
+    * white, green, orange
+
+PURPLE State:
+  Can Cut:
+    * black, red
+  Can't Cut:
+    * purple, green, orange, white
+
+RED State:
+  Can Cut:
+    * green
+  Can't Cut:
+    * white, black, purple, red, orange
+
+GREEN State:
+  Can Cut:
+    * orange, white
+  Can't Cut
+    * black, purple, red, green
+
+ORANGE State:
+  Can Cut:
+    * red, black
+  Can't Cut:
+    * white, purple, green, orange
+
+
+There is a bomb that contains wires need to cut four wires to defuse the bomb. Wires
+must be cut in specific pattern or bomb will detonate.
+
+Bomb
+Wire
+Technician
